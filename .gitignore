@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+out/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# Playwright test outputs
+test-results/
+playwright-report/
+
+# System files
+.DS_Store
+Thumbs.db
