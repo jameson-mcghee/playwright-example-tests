@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 
 test.describe('UltimateQA Login', () => {
   test('should show error with invalid credentials', async ({ page }) => {
-    await page.goto('https://courses.ultimateqa.com/users/sign_in');
+    await page.goto('https://courses.ultimateqa.com/users/sign_in', { timeout: 60000 });
+
+    await page.waitForLoadState('networkidle'); // Waits for no network connections for 500ms
 
     // Wait for the input fields to be visible before interacting
     await page.waitForSelector('#user\\[email\\]');
@@ -20,7 +22,9 @@ test.describe('UltimateQA Login', () => {
   });
 
   test('should log in with valid credentials', async ({ page }) => {
-    await page.goto('https://courses.ultimateqa.com/users/sign_in');
+    await page.goto('https://courses.ultimateqa.com/users/sign_in', { timeout: 60000 });
+
+    await page.waitForLoadState('networkidle'); // Waits for no network connections for 500ms
 
     // Wait for the input fields to be visible before interacting
     await page.waitForSelector('#user\\[email\\]');
