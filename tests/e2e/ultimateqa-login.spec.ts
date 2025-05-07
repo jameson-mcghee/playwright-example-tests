@@ -4,7 +4,11 @@ test.describe('UltimateQA Login', () => {
   test('should show error with invalid credentials', async ({ page }) => {
     await page.goto('https://courses.ultimateqa.com/users/sign_in');
 
-    // Wait for inputs to load
+    // Wait for the input fields to be visible before interacting
+    await page.waitForSelector('#user\\[email\\]');
+    await page.waitForSelector('#user\\[password\\]');
+
+    // Fill in the email and password fields with invalid credentials
     await page.locator('#user\\[email\\]').fill('invalid@example.com');
     await page.locator('#user\\[password\\]').fill('invalidpassword');
 
@@ -18,9 +22,15 @@ test.describe('UltimateQA Login', () => {
   test('should log in with valid credentials', async ({ page }) => {
     await page.goto('https://courses.ultimateqa.com/users/sign_in');
 
+    // Wait for the input fields to be visible before interacting
+    await page.waitForSelector('#user\\[email\\]');
+    await page.waitForSelector('#user\\[password\\]');
+
+    // Fill in the email and password fields with valid credentials
     await page.locator('#user\\[email\\]').fill('JMTester.MCTester@gmail.com');
     await page.locator('#user\\[password\\]').fill('QualityIsKey');
 
+    //Click the Sign In button
     await page.getByRole('button', { name: 'Sign in' }).click();
 
     // Wait for a successful redirect or element to confirm login
